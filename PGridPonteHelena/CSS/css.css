@@ -1,0 +1,265 @@
+/*en la imagen guía no hay nigún h1 claro, para mi sería lo de identity, portfolio,... 
+pero no puede haber varios h1 y sin un h1 no puede haber el resto*/
+/* al principio iba a quitar todos lo h? y poner otra cosa pero al mirar si podía hacerlo
+me salia que si pero si queria tener en cuanta la semantica y la accesibilidad que no podia*/
+
+/* Declaración de variables CSS para gestionar la paleta de colores y espaciados */
+:root {
+    --bg-main: #e0e0e0;
+    --bg-card: #fdfdfd;
+    --color-dark: #111827;
+    --color-accent: #015dc7;
+    --text-primary: #1f2937;
+    --text-secondary: #6b7280;
+    --line-gray: #e5e7eb;
+    --radius: 16px;
+}
+
+/* Reseteo universal para asegurar que los navegadores no apliquen márgenes no deseados */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: system-ui, -apple-system, sans-serif;
+}
+
+/* Estilos del cuerpo para centrar todo el contenido vertical y horizontalmente */
+body {
+    background-color: var(--bg-main);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 2rem;
+}
+
+/* Contenedor principal que establece el Grid de 4 columnas */
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+    max-width: 1200px;
+    width: 100%;
+}
+
+/* Estilos comunes para todas las cajas (fondos, bordes redondeados y sombras) */
+.card {
+    background-color: var(--bg-card);
+    border-radius: var(--radius);
+    padding: 2rem;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Efecto hover general que levanta la caja y amplía la sombra al pasar el cursor */
+.card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.15);
+}
+
+/* Regla para la primera sección de identidad: ocupa 3 columnas del grid */
+.identity {
+    grid-column: span 3;
+}
+
+/* Regla para la caja de título del portfolio: ocupa 1 columna y tiene fondo oscuro */
+.portfolio-dark {
+    grid-column: span 1;
+    background-color: var(--color-dark);
+    color: white;
+}
+
+/* Regla para el contenedor de proyectos: ocupa 3 columnas y usa flexbox para organizar los artículos interiores */
+.proyectos-container {
+    grid-column: span 3;
+    display: flex;
+    gap: 2rem;
+
+    /* ANIDAMIENTO 1: Aplica estilos a cada artículo (.prac) dentro de la sección de proyectos */
+    & .prac {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+
+        /* ANIDAMIENTO 2: Empuja el enlace hacia abajo dando margen al párrafo */
+        & p {
+            margin-bottom: 1.5rem;
+        }
+    }
+}
+
+/* SEPARADOR GRIS: Añade una línea izquierda al segundo artículo de las prácticas */
+.prac + .prac {
+    border-left: 1px solid var(--line-gray);
+    padding-left: 2rem;
+}
+
+/* Estilos base para los enlaces con apariencia de botón */
+.git {
+    margin-top: auto;
+    display: inline-block;
+    padding: 0.6rem 1.2rem;
+    background-color: var(--color-accent);
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+
+
+/* Efecto hover: Desplaza el botón 8 píxeles a la derecha */
+.git:hover {
+    transform: translateX(8px);
+    background-color: #0284c7;
+}
+
+
+/* Regla para la caja de visión: ocupa 1 columna y tiene fondo de color acento */
+.vision-light {
+    grid-column: span 1;
+    background-color: var(--color-accent);
+    color: white;
+}
+
+/* Estilos para las cajas de imágenes: quitan el padding para que la imagen ocupe todo */
+.img-box {
+    padding: 0;
+    overflow: hidden;
+    grid-column: span 1;
+}
+
+/* Regla para que la segunda caja de imagen ocupe 2 columnas */
+.img-large {
+    grid-column: span 2;
+}
+
+/* Asegura que las imágenes ocupen el 100% de la caja sin deformarse */
+.img-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* Regla para la caja de hobbies: ocupa 1 columna */
+.hobbies {
+    grid-column: span 1;
+}
+
+/* Quita las viñetas por defecto de la lista en la sección hobbies */
+.hobbies ul {
+    list-style: none;
+    
+    /* ANIDAMIENTO 3: Estilos para los elementos de lista y su línea azul lateral */
+    & li {
+        margin-bottom: 0.8rem;
+        font-weight: 600;
+        color: var(--text-primary);
+        display: flex;
+        align-items: center;
+        gap: 10px;
+
+        /* LÍNEA AZUL: Borde izquierdo para cada hobby con un poco de separación */
+        border-left: 2px solid var(--color-accent);
+        padding-left: 10px;
+    }
+}
+
+/* Estilo para los iconos de la lista de hobbies para que no se vean gigantes */
+.icono-lista {
+    width: 20px;
+    height: 20px;
+    object-fit: contain;
+}
+
+/* Estilos para los <span> que hacen de etiquetas superiores (IDENTITY, PORTFOLIO, VISION) */
+.tag {
+    font-size: 0.8rem;
+    font-weight: 800;
+    color: var(--color-accent);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    display: block;
+    margin-bottom: 1rem;
+}
+
+/* Color específico para la etiqueta en la tarjeta cyan para que no se vuelva invisible */
+.vision-light .tag {
+    color: rgba(255, 255, 255, 0.8);
+}
+
+/* Título H1 principal de la página (solo debe haber uno) */
+h1 {
+    font-size: 2.2rem;
+    margin-bottom: 0.5rem;
+    color: var(--text-primary);
+    line-height: 1.2;
+}
+
+/* Títulos H2 de las secciones importantes */
+h2 {
+    font-size: 1.8rem;
+    margin-bottom: 0.5rem;
+    line-height: 1.2;
+    color: var(--text-primary);
+}
+
+/* Ajustes de color para los títulos H2 en las cajas oscuras/color */
+.portfolio-dark h3,
+.vision-light h3 {
+    color: white;
+    font-size: 1.8rem;
+}
+
+/* Títulos H3 de las prácticas dentro del portfolio */
+h4 { 
+    font-size: 1.5rem; 
+    margin-bottom: 0.5rem; 
+    color: var(--text-primary); 
+}
+
+/* Ajustes de color y altura de línea para los párrafos de texto */
+p {
+    color: var(--text-secondary);
+    line-height: 1.5;
+}
+
+/* === MEDIA QUERIES (RESPONSIVE) === */
+
+/* Diseño para tablets: cambia la cuadrícula de 4 a 2 columnas */
+@media (max-width: 900px) {
+    .grid-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .identity, .proyectos-container, .img-large { 
+        grid-column: span 2; 
+    }
+}
+
+/* Diseño para móviles: cambia la cuadrícula a 1 sola columna */
+@media (max-width: 600px) {
+    .grid-container {
+        grid-template-columns: 1fr;
+    }
+    
+    .card {
+        grid-column: span 1 !important;
+    }
+    
+    .proyectos-container {
+        flex-direction: column;
+    }
+
+    /* En móviles, la línea separadora gris pasa de vertical a horizontal */
+    .prac + .prac {
+        border-left: none;
+        padding-left: 0;
+        border-top: 1px solid var(--line-gray);
+        padding-top: 1.5rem;
+        margin-top: 1rem;
+    }
+}
