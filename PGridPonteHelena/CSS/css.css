@@ -3,6 +3,10 @@ pero no puede haber varios h1 y sin un h1 no puede haber el resto*/
 /* al principio iba a quitar todos lo h? y poner otra cosa pero al mirar si podía hacerlo
 me salia que si pero si queria tener en cuanta la semantica y la accesibilidad que no podia*/
 
+/*puse el main por que se podia hacer como la foto o el esquema que hiciste en clase
+y en el esquema si que había hader y footer por lo que sería necesario y al poner el main
+si en cualquier momento se quiere añadir header o footer no afectaria tanto al resto*/
+
 /* Declaración de variables CSS para gestionar la paleta de colores y espaciados */
 :root {
     --bg-main: #e0e0e0;
